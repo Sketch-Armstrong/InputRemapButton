@@ -1,0 +1,159 @@
+[gd_scene load_steps=5 format=3 uid="uid://0lb6ve7remid"]
+
+[ext_resource type="Script" uid="uid://d1v53fcgqch8j" path="res://InputRemapButtonResources/options_demo.gd" id="1_nobfm"]
+[ext_resource type="Script" uid="uid://dsckw5bbnd1oo" path="res://InputRemapButtonResources/input_button.gd" id="2_t8a7e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vh1wk"]
+texture_margin_left = 25.0
+texture_margin_top = 30.0
+texture_margin_right = 35.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh1wk"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_nobfm")
+
+[node name="InputSettings" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 803.0
+offset_top = 530.0
+offset_right = 803.0
+offset_bottom = 530.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_behavior_recursive = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="InputSettings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -387.0
+offset_right = 368.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vh1wk")
+
+[node name="OptionsList" type="VBoxContainer" parent="InputSettings/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "up"
+
+[node name="UpRemapButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+script = ExtResource("2_t8a7e")
+action = "move_up"
+metadata/_custom_type_script = "uid://dsckw5bbnd1oo"
+
+[node name="Label2" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "down"
+
+[node name="DownRemapButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../UpRemapButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../LeftRemapButton")
+script = ExtResource("2_t8a7e")
+action = "move_down"
+metadata/_custom_type_script = "uid://dsckw5bbnd1oo"
+
+[node name="Label3" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "left"
+
+[node name="LeftRemapButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../DownRemapButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../RightRemapButton")
+script = ExtResource("2_t8a7e")
+action = "move_left"
+metadata/_custom_type_script = "uid://dsckw5bbnd1oo"
+
+[node name="Label4" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "right"
+
+[node name="RightRemapButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../LeftRemapButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ActionRemapButton")
+script = ExtResource("2_t8a7e")
+action = "move_right"
+metadata/_custom_type_script = "uid://dsckw5bbnd1oo"
+
+[node name="Label5" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "basic action"
+
+[node name="ActionRemapButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../RightRemapButton")
+focus_neighbor_right = NodePath(".")
+script = ExtResource("2_t8a7e")
+action = "basic_action"
+metadata/_custom_type_script = "uid://dsckw5bbnd1oo"
+
+[node name="Label6" type="Label" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "Reset
+"
+
+[node name="ResetButton" type="Button" parent="InputSettings/PanelContainer/OptionsList"]
+layout_mode = 2
+focus_neighbor_right = NodePath(".")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vh1wk")
+text = "Reset controls"
+
+[node name="MarginContainer" type="MarginContainer" parent="InputSettings"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = -154.0
+offset_right = 333.0
+offset_bottom = 56.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="InputSettings"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 25.0
+offset_top = 97.0
+offset_right = 333.0
+offset_bottom = 128.0
+focus_neighbor_left = NodePath("../PanelContainer/OptionsList")
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0.9490196, 1)
+text = "back placeholder"
+
+[connection signal="done_remapping" from="InputSettings/PanelContainer/OptionsList/UpRemapButton" to="." method="_on_up_remap_button_done_remapping"]
+[connection signal="done_remapping" from="InputSettings/PanelContainer/OptionsList/DownRemapButton" to="." method="_on_down_remap_button_done_remapping"]
+[connection signal="done_remapping" from="InputSettings/PanelContainer/OptionsList/LeftRemapButton" to="." method="_on_left_remap_button_done_remapping"]
+[connection signal="done_remapping" from="InputSettings/PanelContainer/OptionsList/RightRemapButton" to="." method="_on_right_remap_button_done_remapping"]
+[connection signal="done_remapping" from="InputSettings/PanelContainer/OptionsList/ActionRemapButton" to="." method="_on_action_remap_button_done_remapping"]
+[connection signal="pressed" from="InputSettings/PanelContainer/OptionsList/ResetButton" to="." method="_on_reset_button_pressed"]
