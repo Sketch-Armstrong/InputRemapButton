@@ -1,0 +1,65 @@
+
+A demo scene is included to demonstrate rebinding, saving, loading, and displaying your rebinds.
+
+
+Hooking up the options demo (recommended for beginners):
+-copy paste the InputRemapButtonResources folder into your own project
+	-this will create a custom InputRemapButton resource class in your project
+-click on the Project tab
+-select Project Settings
+-select Globals
+-click on the folder icon
+	-you can also manually refer to the path
+-double click and to select InputConfigHandler.gd
+-in "Node Name:" make sure it is case sensitive named: 
+	InputConfigHandler
+-select "+Add"
+-running the options_demo.tscn scene now, it will throw several errors telling you:
+	-The InputMap action "move_up" doesn't exist. Did you mean "ui_up"?
+
+-click on the Project tab
+-select Project Settings
+-select the Input Map tab
+-create the following inputs (case sensitive):
+	move_up
+	move_down
+	move_left
+	move_right
+	basic_action
+
+The demo scene is now functioning.
+
+
+
+Using the demo scene:
+
+-click on an InputRemapButton and then press an input on either a controller, or keyboard
+-the demo will filter out attempts at creating duplicate inputs, and prevent binding the same input to multiple actions
+-the demo will save bindings every time a bind is changed. You can close and reopen the project to demonstrate this
+-the left side of the input button's text displays controller inputs, the right displays keyboard inputs
+-both digital and analog inputs are recognized by the InputRemapButton resource, and will properly overwrtie one another
+-I had used a fair amount of print()s for testing, but I have elected to leave them in for others to help debug and understand the code
+
+
+
+
+Creating your own InputResourceButton:
+
+-you'll have to go into InputConfigHandler, and input_button, and append your own action to every section that has my default actions being handled.This is mostly just me ripping a chunk of my own project out, for others to use, since I wasn't really liking how the plugins I found were handling it. 
+-I have added comments for each part you'll have to append to help guide you through the process
+	-I would recommend leaving them in your script, so you can refer to them in the future
+
+when you've done so, and be sure you thoroughly followed the comments
+-open any scene you would need an InputRemapButton
+-press ctrl + A, or right click and select "add child node" 
+-search for "InputRemapButton" in the search bar
+-select the newly created InputRemapButton 
+-in the Inspector tab (by default on the right side of the screen)
+-find the "Action" bar, with a text input field
+-type in the action you want to remap
+-when you run the scene, selecting the button will cause it to listen for the input
+
+This whole process is understandably a bit of a pain, so imagine how grueling it was writing this all myself. Fortunately, when you set it up and customize it to your own project, you can re-use these options for future projects. All you have to do is ctrl + R and replace the names of your old actions with the corresponding new actions.
+
+As a tip, and thank you for reading all the way to the end (you didn't just skip to the bottom, right?) you can save yourself a chunk of hassle by following the demo setup and then renaming your existing actions to the demo's names. 
+	-eg change "hero_move_left" to "move_left" and you'll save yourself a bit of work
